@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="ButtonTitle" xml:space="preserve"><value>Synology Office</value></data>
+  <data name="ButtonHelp" xml:space="preserve"><value>Подключение к таблицам Synology Office (Spreadsheet) на NAS Synology</value></data>
+  <data name="DataSourceLabel" xml:space="preserve"><value>Synology Office</value></data>
+  <data name="LongDescription" xml:space="preserve"><value>Загружает листы таблицы Synology Office (.osheet) по её ссылке. Таблица экспортируется в xlsx средствами DSM.</value></data>
+  <data name="BaseUrlCaption" xml:space="preserve"><value>Адрес NAS</value></data>
+  <data name="BaseUrlDescription" xml:space="preserve"><value>Базовый адрес NAS, например https://nas:5001 — одни учётные данные на весь NAS</value></data>
+  <data name="TableUrlCaption" xml:space="preserve"><value>Ссылка на таблицу (необязательно)</value></data>
+  <data name="TableUrlDescription" xml:space="preserve"><value>Ссылка на таблицу Synology Office; оставьте пустым, чтобы только проверить подключение</value></data>
+  <data name="AuthLabel" xml:space="preserve"><value>Учётная запись DSM</value></data>
+  <data name="UsernameLabel" xml:space="preserve"><value>Имя пользователя DSM</value></data>
+  <data name="PasswordLabel" xml:space="preserve"><value>Пароль</value></data>
+  <data name="ErrorUnknownUrl" xml:space="preserve"><value>Не удалось распознать ссылку. Ожидается https://nas/oo/r/&lt;id&gt;, https://nas/d/f/&lt;id&gt;, https://nas/?file_id=&lt;id&gt; или https://nas/?path=/mydrive/файл.osheet</value></data>
+  <data name="ErrorNotSpreadsheet" xml:space="preserve"><value>Ссылка указывает не на таблицу Synology Office (.osheet).</value></data>
+  <data name="ErrorExport" xml:space="preserve"><value>DSM не вернул xlsx при экспорте таблицы.</value></data>
+  <data name="ErrorHttpsRequired" xml:space="preserve"><value>Подключение возможно только по HTTPS: иначе пароль DSM передаётся открытым текстом. Используйте адрес вида https://nas:5001/...</value></data>
+  <data name="ErrorNotDsm" xml:space="preserve"><value>Сервер вернул не ответ DSM Web API. Проверьте адрес NAS и порт.</value></data>
+  <data name="DsmAuth400" xml:space="preserve"><value>Неверное имя пользователя или пароль DSM.</value></data>
+  <data name="DsmAuth401" xml:space="preserve"><value>Учётная запись DSM отключена.</value></data>
+  <data name="DsmAuth402" xml:space="preserve"><value>Нет прав доступа.</value></data>
+  <data name="DsmAuth403" xml:space="preserve"><value>Для учётной записи включена двухэтапная проверка (2FA). Используйте отдельную служебную учётную запись без 2FA.</value></data>
+  <data name="DsmAuth404" xml:space="preserve"><value>Ошибка двухэтапной проверки.</value></data>
+  <data name="DsmAuth406" xml:space="preserve"><value>Администратор требует 2FA для этой учётной записи. Используйте служебную учётную запись без 2FA.</value></data>
+  <data name="DsmAuth407" xml:space="preserve"><value>IP-адрес заблокирован автоблокировкой DSM.</value></data>
+  <data name="DsmAuth408" xml:space="preserve"><value>Срок действия пароля истёк.</value></data>
+  <data name="DsmAuth410" xml:space="preserve"><value>Пароль необходимо сменить.</value></data>
+  <data name="DsmCommon102" xml:space="preserve"><value>API не найден. Убедитесь, что на NAS установлены Synology Drive Server и Synology Office.</value></data>
+  <data name="DsmCommon105" xml:space="preserve"><value>Нет прав доступа к файлу (или сессия недействительна).</value></data>
+  <data name="DsmCommon106" xml:space="preserve"><value>Сессия истекла.</value></data>
+  <data name="DsmCommon119" xml:space="preserve"><value>Сессия недействительна.</value></data>
+  <data name="DsmErrorGeneric" xml:space="preserve"><value>#{0}: ошибка DSM, код #{1}</value></data>
+  <data name="DsmCodeUnknown" xml:space="preserve"><value>неизвестен</value></data>
+  <data name="DsmFilesHint" xml:space="preserve"><value>. Проверьте ссылку на таблицу и доступ пользователя к ней.</value></data>
+</root>

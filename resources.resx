@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="ButtonTitle" xml:space="preserve"><value>Synology Office</value></data>
+  <data name="ButtonHelp" xml:space="preserve"><value>Connect to Synology Office (Spreadsheet) tables on a Synology NAS</value></data>
+  <data name="DataSourceLabel" xml:space="preserve"><value>Synology Office</value></data>
+  <data name="LongDescription" xml:space="preserve"><value>Loads the sheets of a Synology Office (.osheet) spreadsheet from its link. DSM exports the spreadsheet to xlsx.</value></data>
+  <data name="BaseUrlCaption" xml:space="preserve"><value>NAS address</value></data>
+  <data name="BaseUrlDescription" xml:space="preserve"><value>The NAS base address, e.g. https://nas:5001 — one set of credentials covers the whole NAS</value></data>
+  <data name="TableUrlCaption" xml:space="preserve"><value>Table link (optional)</value></data>
+  <data name="TableUrlDescription" xml:space="preserve"><value>A Synology Office spreadsheet link; leave empty to only test the connection</value></data>
+  <data name="AuthLabel" xml:space="preserve"><value>DSM account</value></data>
+  <data name="UsernameLabel" xml:space="preserve"><value>DSM username</value></data>
+  <data name="PasswordLabel" xml:space="preserve"><value>Password</value></data>
+  <data name="ErrorUnknownUrl" xml:space="preserve"><value>Could not recognize the link. Expected https://nas/oo/r/&lt;id&gt;, https://nas/d/f/&lt;id&gt;, https://nas/?file_id=&lt;id&gt;, or https://nas/?path=/mydrive/file.osheet</value></data>
+  <data name="ErrorNotSpreadsheet" xml:space="preserve"><value>The link does not point to a Synology Office (.osheet) spreadsheet.</value></data>
+  <data name="ErrorExport" xml:space="preserve"><value>DSM did not return an xlsx when exporting the spreadsheet.</value></data>
+  <data name="ErrorHttpsRequired" xml:space="preserve"><value>Connections are only allowed over HTTPS; otherwise the DSM password would travel in clear text. Use an address like https://nas:5001/...</value></data>
+  <data name="ErrorNotDsm" xml:space="preserve"><value>The server did not return a DSM Web API response. Check the NAS address and port.</value></data>
+  <data name="DsmAuth400" xml:space="preserve"><value>Incorrect DSM username or password.</value></data>
+  <data name="DsmAuth401" xml:space="preserve"><value>The DSM account is disabled.</value></data>
+  <data name="DsmAuth402" xml:space="preserve"><value>Permission denied.</value></data>
+  <data name="DsmAuth403" xml:space="preserve"><value>Two-factor authentication (2FA) is enabled for this account. Use a dedicated service account without 2FA.</value></data>
+  <data name="DsmAuth404" xml:space="preserve"><value>Two-factor authentication failed.</value></data>
+  <data name="DsmAuth406" xml:space="preserve"><value>The administrator requires 2FA for this account. Use a service account without 2FA.</value></data>
+  <data name="DsmAuth407" xml:space="preserve"><value>The IP address is blocked by DSM auto-block.</value></data>
+  <data name="DsmAuth408" xml:space="preserve"><value>The password has expired.</value></data>
+  <data name="DsmAuth410" xml:space="preserve"><value>The password must be changed.</value></data>
+  <data name="DsmCommon102" xml:space="preserve"><value>API not found. Make sure Synology Drive Server and Synology Office are installed on the NAS.</value></data>
+  <data name="DsmCommon105" xml:space="preserve"><value>No permission to access the file (or the session is invalid).</value></data>
+  <data name="DsmCommon106" xml:space="preserve"><value>The session has expired.</value></data>
+  <data name="DsmCommon119" xml:space="preserve"><value>The session is invalid.</value></data>
+  <data name="DsmErrorGeneric" xml:space="preserve"><value>#{0}: DSM error, code #{1}</value></data>
+  <data name="DsmCodeUnknown" xml:space="preserve"><value>unknown</value></data>
+  <data name="DsmFilesHint" xml:space="preserve"><value>. Check the table link and the user's access to it.</value></data>
+</root>

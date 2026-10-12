@@ -1,0 +1,16 @@
+# Normalize line endings: store text as LF in the repo, check out native.
+* text=auto
+
+# Keep these as LF everywhere.
+*.pq   text eol=lf
+*.resx text eol=lf
+*.md   text eol=lf
+
+# PowerShell scripts: CRLF on checkout (Windows-only tooling).
+*.ps1  text eol=crlf
+
+# Binary assets — never touch.
+*.png  binary
+*.mez  binary
+*.pqx  binary
+*.xlsx binary
