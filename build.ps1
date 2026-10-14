@@ -76,7 +76,7 @@ if ($Sign) {
     $cert = & $FindCert
     if (-not $cert) { throw 'Signing certificate "CN=SynologyOffice Power BI Connector" not found in Cert:\CurrentUser\My. Run "build.ps1 -NewCert" once to create one.' }
     $makePqx = Join-Path $SdkTools 'MakePQX.exe'
-    if (-not (Test-Path $makePqx)) { throw "MakePQX.exe not found in $SdkTools (NuGet package Microsoft.PowerQuery.SdkTools)" }
+    if (-not (Test-Path $makePqx)) { throw "MakePQX.exe not found in $SdkTools - run tools\get-sdk.ps1 to download it" }
 
     $pqx = Join-Path $out 'SynologyOffice.pqx'
     if (Test-Path $pqx) { [IO.File]::Delete($pqx) }

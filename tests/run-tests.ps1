@@ -4,11 +4,14 @@
 param([string]$SdkTools = (Join-Path $env:LOCALAPPDATA 'PowerQuerySdkTools\2.155.2'))
 
 $ErrorActionPreference = 'Stop'
+# PQTest prints UTF-8; without this, Cyrillic in its output is decoded with the console
+# code page (e.g. 866 when started from another shell) and the checks below fail.
+[Console]::OutputEncoding = New-Object Text.UTF8Encoding $false
 $here = $PSScriptRoot
 $work = Join-Path $here 'out'
 New-Item -ItemType Directory -Force $work | Out-Null
 $pqTest = Join-Path $SdkTools 'PQTest.exe'
-if (-not (Test-Path $pqTest)) { throw "PQTest.exe not found in $SdkTools (NuGet package Microsoft.PowerQuery.SdkTools)" }
+if (-not (Test-Path $pqTest)) { throw "PQTest.exe not found in $SdkTools - run tools\get-sdk.ps1 to download it" }
 
 & (Join-Path $here '..\build.ps1') | Out-Null
 $mez = Join-Path $here '..\bin\SynologyOffice.mez'
@@ -37,6 +40,10 @@ $cases = @(
     @{ Name = 'two-loads';     Expect = 'Passed'; Contains = '"Value":4';        Query = "let a = SynologyOffice.Contents(""$base/oo/r/AbC123#tid=1""){0}[Data], b = SynologyOffice.Contents(""$base/oo/r/AbC123#tid=2""){0}[Data] in Table.RowCount(a) + Table.RowCount(b)" }
     @{ Name = 'bad-password';  Expect = 'Failed'; Contains = 'DSM';              Query = "SynologyOffice.Contents(""$base/oo/r/AbC123"")"; User = 'pbi'; Password = 'wrong' }
     @{ Name = '2fa-account';   Expect = 'Failed'; Contains = '2FA';              Query = "SynologyOffice.Contents(""$base/oo/r/AbC123"")"; User = 'otp'; Password = 'x' }
+    # Host-level data source: base URL only is a sign-in check (what the gateway runs).
+    @{ Name = 'db-base-only';  Expect = 'Passed'; Contains = '"Value":0';        Query = "Table.RowCount(SynologyOffice.Database(""$base""))" }
+    @{ Name = 'db-bad-password'; Expect = 'Failed'; Contains = 'DSM';            Query = "Table.RowCount(SynologyOffice.Database(""$base""))"; User = 'pbi'; Password = 'wrong' }
+    @{ Name = 'db-with-table'; Expect = 'Passed'; Contains = 'Продажи';          Query = "SynologyOffice.Database(""$base"", ""$base/oo/r/AbC123"")[Name]" }
 )
 
 # Credentials are keyed by the NAS base URL now, so they are set against the
@@ -68,6 +75,14 @@ try {
     $ok = $tc -match 'TestConnection succeeded'
     if (-not $ok) { $failed++ }
     Write-Host ("{0} test-connection" -f $(if ($ok) { 'PASS' } else { 'FAIL' }))
+
+    # TestConnection must really sign in: with a wrong password it has to fail.
+    '{"AuthenticationKind":"UsernamePassword","AuthenticationProperties":{"Username":"pbi","Password":"wrong"},"PrivacySetting":"None","Permissions":[]}' |
+        & $pqTest set-credential -e $mez -q $credFile | Out-Null
+    $tc = (& $pqTest test-connection -e $mez -q $credFile 2>&1 | Out-String)
+    $ok = $tc -notmatch 'TestConnection succeeded'
+    if (-not $ok) { $failed++ }
+    Write-Host ("{0} test-connection rejects a wrong password" -f $(if ($ok) { 'PASS' } else { 'FAIL' }))
 
     $lines = Get-Content $log -Encoding UTF8
     $check = {

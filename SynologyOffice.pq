@@ -61,8 +61,14 @@ SynologyOfficeDatabaseImpl = (baseUrl as text, optional tableUrl as text) as tab
         result =
             if tableUrl = null then
                 // No table requested: this is a plain credential check (gateway
-                // TestConnection). Drop the session and hand back an empty navigator.
-                let _ = (try Logout(normBase, sid, #binary({})) otherwise false) in EmptyNavigation()
+                // TestConnection). M is lazy, so the sign-in must be forced explicitly:
+                // "sid <> null" runs Login outside any try, so a wrong password still
+                // fails here; only then is the session dropped (a failed logout is ignored).
+                let
+                    signedIn = sid <> null,
+                    loggedOut = signedIn and ((try Logout(normBase, sid, #binary({})) otherwise false) or true)
+                in
+                    if loggedOut then EmptyNavigation() else error "unreachable"
             else
                 let
                     parts = RequireHttps(Uri.Parts(tableUrl)),
