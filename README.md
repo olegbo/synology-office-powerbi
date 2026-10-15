@@ -100,6 +100,7 @@ Only your own certificate is trusted; the security level stays at "Recommended".
 
 1. Install an **on-premises data gateway** that can reach the NAS.
 2. Put the same connector on the gateway: copy `SynologyOffice.mez` (or the signed `.pqx`) into the gateway's custom-connectors folder, grant the gateway service account read access to it, and restart the gateway service. On the gateway machine, trust the certificate if you use the signed build.
+   To update the connector on a gateway machine later, run `tools\update-gateway.ps1` as Administrator: it reads the custom-connectors folder from the gateway config, backs up the current `SynologyOffice.mez`/`.pqx` to `bin\gateway-backup`, copies the new build (default `bin\SynologyOffice.mez`; `-Source` for the `.pqx`) and restarts the gateway service.
 3. In the Service → **Manage connections and gateways → New connection**: type **Synology Office**, **NAS address** = `https://nas:5001` (base address only, no path), authentication **DSM account**.
 4. In the semantic model's **Gateway and cloud connections** settings, map the Synology data source to that connection and apply.
 
@@ -189,6 +190,7 @@ build.ps1               build .mez / create cert / sign .pqx / install
 trust-certificate.ps1   trust the certificate in the Power BI policy (as Administrator)
 tests/                  DSM simulation, xlsx generator, run-tests.ps1
 tools/get-sdk.ps1       download the Power Query SDK tools (for -Sign and tests)
+tools/update-gateway.ps1  update the connector on an on-premises gateway (as Administrator)
 ```
 
 ## License
